@@ -1,0 +1,213 @@
+@use "./mixins" as *;
+@use "./variables" as *;
+
+// should be deleted
+section {
+    @include dimensions(100%, 100vh);
+    background-color: brown;
+}
+// =======================
+
+// global styles
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: $largest;
+    line-height: $sizeLineHeight;
+}
+h2 {
+    font-size: $large;
+    line-height: $sizeLineHeight;
+}
+h3 {
+    font-size: $mediumLarge;
+    line-height: $sizeLineHeight;
+}
+h4 {
+    font-size: $medium;
+    line-height: $sizeLineHeight;
+}
+h5 {
+    font-size: $mediumSmall;
+    line-height: $sizeLineHeight;
+}
+p {
+    font-size: $small;
+    line-height: $sizeLineHeight;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+// ================================
+
+#navbar {
+    @include dimensions(100%, 64px);
+    max-width: 2200px;
+    @include flex(center, space-between);
+    padding: 0 100px;
+    background-color: $navbarBgColor;
+    position: fixed;
+    z-index: 999;
+
+    img {
+        @include dimensions(55px, auto);
+    }
+
+    #desktopNav {
+        @include dimensions(40%, auto);
+        ul {
+            @include flex(stretch, space-between);
+            li {
+                a {
+                    @include flex(flex-end, flex-start);
+                    font-size: $small;
+                    color: white;
+                    svg {
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+    #invisibleBoxToCloseNav {
+        @include dimensions(100%, 100vh);
+        position: absolute;
+        left: 0;
+        top: 64px;
+        background-color: transparent;
+        transform: translateX(-100%);
+    }
+
+    #invisibleBoxToCloseNav.opened {
+        transform: translateX(0);
+    }
+    #mobileNav {
+        @include dimensions(200px, 100vh);
+        position: fixed;
+        left: 0;
+        top: 64px;
+        padding: 50px 0 10px 0;
+        background-color: $navbarBgColor;
+        transform: translateX(-100%);
+        transition: all 0.5s ease-in-out;
+        z-index: 999;
+
+        li {
+            margin-bottom: 20px;
+            background-color: #555;
+            a {
+                @include flex(flex-end, flex-start);
+                padding: 20px 0px 20px 30px;
+                font-size: 1rem;
+                color: white;
+
+                svg {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        p {
+            margin: 120px 0 0 10px;
+            color: white;
+        }
+    }
+
+    #mobileNav.opened {
+        transform: translateX(0);
+    }
+
+    // ham animation
+    .menu {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: none;
+        padding: 0;
+    }
+    .line {
+        fill: none;
+        stroke: white;
+        stroke-width: 6;
+        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+            stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .line1 {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+    }
+    .line2 {
+        stroke-dasharray: 60 60;
+        stroke-width: 6;
+    }
+    .line3 {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+    }
+    .opened .line1 {
+        stroke-dasharray: 90 207;
+        stroke-dashoffset: -134;
+        stroke-width: 6;
+    }
+    .opened .line2 {
+        stroke-dasharray: 1 60;
+        stroke-dashoffset: -30;
+        stroke-width: 6;
+    }
+    .opened .line3 {
+        stroke-dasharray: 90 207;
+        stroke-dashoffset: -134;
+        stroke-width: 6;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    #navbar {
+        padding: 0 50px;
+
+        #desktopNav {
+            width: 50%;
+        }
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    #navbar {
+        padding: 0 50px;
+
+        #desktopNav {
+            display: none;
+            width: 50%;
+        }
+
+        button {
+            display: none;
+        }
+        .menu {
+            display: flex;
+        }
+    }
+}
+
+.active {
+    background-color: red;
+}
