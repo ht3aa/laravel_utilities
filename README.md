@@ -9,7 +9,5 @@ template to use for responsive navbar.
    php artisan make:component NavbarStandard
    ```
 
-```
 3. Clone the respo.
 4. Add it to your project.
-```
