@@ -1,48 +1,6 @@
 @use "./mixins" as *;
 @use "./variables" as *;
 
-// should be deleted
-section {
-    @include dimensions(100%, 100vh);
-    background-color: brown;
-}
-// =======================
-
-// global styles
-
-*,
-*::after,
-*::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-h1 {
-    font-size: $largest;
-    line-height: $sizeLineHeight;
-}
-h2 {
-    font-size: $large;
-    line-height: $sizeLineHeight;
-}
-h3 {
-    font-size: $mediumLarge;
-    line-height: $sizeLineHeight;
-}
-h4 {
-    font-size: $medium;
-    line-height: $sizeLineHeight;
-}
-h5 {
-    font-size: $mediumSmall;
-    line-height: $sizeLineHeight;
-}
-p {
-    font-size: $small;
-    line-height: $sizeLineHeight;
-}
-
 ul {
     list-style: none;
 }
